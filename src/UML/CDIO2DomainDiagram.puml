@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Player{
+
+}
+class Die{
+    faceValue
+    amountOfFaces
+}
+class Konto{
+    amountOfMoney
+}
+class GameController{
+
+}
+class GUI
+
+Player "1"--"2" Die
+Player "1"--"1" Konto
+Player "2"--"1" GameController
+GameController "1"--"1" GUI
+
+@enduml

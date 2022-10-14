@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+
+actor Player as p
+
+package CDIO2{
+    usecase "Roll Die" as UC1
+}
+p -- UC1
+@enduml
