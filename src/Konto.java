@@ -1,4 +1,9 @@
 public class Konto {
+
+    public Konto(){
+        amountOfMoney = 1000;
+    }
+
     private int amountOfMoney;
 
     public int getAmountOfMoney() {
