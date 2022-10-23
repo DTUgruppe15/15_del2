@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+loop PlayerMoney<3000
+    Player -> Die:Roll
+end
+@enduml

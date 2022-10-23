@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+[->GameController:Start
+GameController -> Player:Create
+Player -> Die:Create
+loop PlayerMoney<3000
+    Player -> Die:Roll
+end
+Player -> GameController:Win Message
+@enduml
