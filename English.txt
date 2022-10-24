@@ -1,0 +1,15 @@
+You have raided a tower and stolen 250 gold.
+You have fallen into a crater and dropped 100 gold.
+You have entered the palace gates and "found" 100 gold worth of decorations.
+The desert is cold at night so you rent a room for 20 gold.
+A walled city makes people feel safe, lowering their guard to pickpocketing. You gain 180 gold.
+The monestary is poor but you are not the type to donate.
+You walk into a dark cave, only to robbed of 70 gold.
+The huts in the mountains are isolated, perfect for robbing. You gain 60 gold.
+Werewolves are tough, you have to spend 80 gold on silver weapons. The adrenaline keeps you going.
+You lost 50 gold gambling in the fighting pits.
+While the dwarfs are in the mine, you steal their stash.
+Player %d wins.
+ have been inserted to your account.
+You have no more money.
+ have been removed from your account.

@@ -1,9 +1,10 @@
 import java.util.Arrays;
 
 public class GameController {
-
+    static LanguageSelect languageSelect = new LanguageSelect();
     public static void main(String[] args) {
 
+        languageSelect.selectLanguage(0);
         Player[] players = new Player[2];
         Arrays.fill(players, new Player());
 
@@ -24,57 +25,48 @@ public class GameController {
         for (int i = 0; i <= players.length; i++) {
             if(players[i].konto.getAmountOfMoney()>3000){
                 win = true;
-                System.out.println("Player " + i+1 + " wins.");
+                System.out.printf(languageSelect.getTextAtIndex(11), i+1);
             }
         }
         return win;
     }
 
-    public void landOnField(Player player, int field){
+    public String landOnField(Player player, int field){
         switch (field){
             case 2:
                 player.konto.insertMoney(250);
-                System.out.println("You have raided a tower and stolen 250 gold.");
-                break;
+                return languageSelect.getTextAtIndex(0);
             case 3:
                 player.konto.removeMoney(100);
-                System.out.println("You have fallen into a crater and dropped 100 gold.");
-                break;
+                return languageSelect.getTextAtIndex(1);
             case 4:
                 player.konto.insertMoney(100);
-                System.out.println("You have entered the palace gates and \"found\" 100 gold worth of decorations.");
-                break;
+                return languageSelect.getTextAtIndex(2);
             case 5:
                 player.konto.removeMoney(20);
-                System.out.println("The desert is cold at night so you rent a room for 20 gold.");
-                break;
+                return languageSelect.getTextAtIndex(3);
             case 6:
                 player.konto.insertMoney(180);
-                System.out.println("A walled city makes people feel safe, lowering their guard to pickpocketing. You gain 180 gold.");
-                break;
+                return languageSelect.getTextAtIndex(4);
             case 7:
-                System.out.println("The monestary is poor but you are not the type to donate.");
-                break;
+                return languageSelect.getTextAtIndex(5);
             case 8:
                 player.konto.removeMoney(70);
-                System.out.println("You walk into a dark cave, only to robbed of 70 gold.");
-                break;
+                return languageSelect.getTextAtIndex(6);
             case 9:
                 player.konto.insertMoney(60);
-                System.out.println("The huts in the mountains are isolated, perfect for robbing. You gain 60 gold.");
-                break;
+                return languageSelect.getTextAtIndex(7);
             case 10:
                 player.konto.removeMoney(80);
-                System.out.println("Werewolves are tough, you have to spend 80 gold on silver weapons. The adrenaline keeps you going.");
-                break;
+                return languageSelect.getTextAtIndex(8);
             case 11:
                 player.konto.removeMoney(50);
-                System.out.println("You lost 50 gold gambling in the fighting pits.");
-                break;
+                return languageSelect.getTextAtIndex(9);
             case 12:
                 player.konto.insertMoney(650);
-                System.out.println("While the dwarfs are in the mine, you steal their stash.");
-                break;
+                return languageSelect.getTextAtIndex(10);
+            default:
+                return "Out of bounds.";
         }
     }
 }
