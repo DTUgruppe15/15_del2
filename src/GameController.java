@@ -1,4 +1,35 @@
+import java.util.Arrays;
+
 public class GameController {
+
+    public static void main(String[] args) {
+
+        Player[] players = new Player[2];
+        Arrays.fill(players, new Player());
+
+        int playerTurn = 0;
+        while(!winCondition(players)){
+            if(playerTurn >= players.length){
+                playerTurn = 0;
+            }
+
+
+
+            playerTurn++;
+        }
+    }
+
+    public static boolean winCondition(Player[] players){
+        boolean win = false;
+        for (int i = 0; i <= players.length; i++) {
+            if(players[i].konto.getAmountOfMoney()>3000){
+                win = true;
+                System.out.println("Player " + i+1 + " wins.");
+            }
+        }
+        return win;
+    }
+
     public void landOnField(Player player, int field){
         switch (field){
             case 2:
