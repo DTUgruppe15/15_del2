@@ -1,5 +1,5 @@
 import java.util.Arrays;
-import gui_main.GUI;
+//import gui_main.GUI;
 public class GameController {
     LanguageSelect languageSelect= new LanguageSelect();
 
@@ -9,7 +9,8 @@ public class GameController {
         //Arrays.fill(players, new Player());
         players[0] = new Player();
         players[1] = new Player();
-        GUI gui = new GUI();
+        //GUI gui = new GUI();
+        UIController uiController = new UIController();
 
         temp(players);
 
@@ -18,7 +19,7 @@ public class GameController {
             if(playerTurn >= players.length){
                 playerTurn = 0;
             }
-            boolean clickRoll = gui.getUserLeftButtonPressed("Click for roll player: " + (playerTurn+1),  "yes","Yes");
+            boolean clickRoll = uiController.gui.getUserLeftButtonPressed("Click for roll player: " + (playerTurn+1),  "yes","Yes");
 
             players[playerTurn].rollDice();
 
