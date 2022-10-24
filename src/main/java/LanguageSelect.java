@@ -7,7 +7,7 @@ import java.util.List;
 public class LanguageSelect {
     static String[] textArr;
 
-    public static void selectLanguage(int language){
+    public void selectLanguage(int language){
         String languageStr;
         switch (language){
             default -> languageStr = "English.txt";
