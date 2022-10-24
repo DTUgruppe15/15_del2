@@ -6,10 +6,12 @@ public class GameController {
     public void game(){
         languageSelect.selectLanguage(0);
         Player[] players = new Player[2];
-        Arrays.fill(players, new Player());
+        //Arrays.fill(players, new Player());
+        players[0] = new Player();
+        players[1] = new Player();
         GUI gui = new GUI();
 
-
+        temp(players);
 
         int playerTurn = 0;
         while(!winCondition(players)){
@@ -22,12 +24,21 @@ public class GameController {
 
             landOnField(players[playerTurn], players[playerTurn].sumOfDice());
 
-            System.out.println("Player " + playerTurn + " sum: " + players[playerTurn].konto.getAmountOfMoney());
-            
+            //System.out.println("Player " + playerTurn + " sum: " + players[playerTurn].konto.getAmountOfMoney());
+            System.out.println("playerturn: " +(playerTurn+1));
+            System.out.println("roll: " + players[playerTurn].sumOfDice());
+            System.out.println("Player 1 sum: " + players[0].konto.getAmountOfMoney());
+            System.out.println("Player 2 sum: " + players[1].konto.getAmountOfMoney());
 
-            System.out.println("playerturn: " +playerTurn);
+
+
             playerTurn++;
         }
+    }
+
+    public void temp(Player[] temp){
+        temp[0].die1.rollDie();
+        System.out.println("temp: " + temp[1].die1.getFaceValue());
     }
 
     public boolean winCondition(Player[] players){

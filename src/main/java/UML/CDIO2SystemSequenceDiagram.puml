@@ -5,5 +5,6 @@ autonumber
 
 loop PlayerMoney<3000
     Player -> Die:Roll
+    Die -> Player:next player
 end
 @enduml
