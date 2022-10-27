@@ -18,12 +18,12 @@ public class Konto {
 
     public void changeBalance(int money){
         if(money<0){
-            amountOfMoney -= money;
+            amountOfMoney += money;
             if(amountOfMoney <= 0){
                 amountOfMoney = 0;
                 System.out.println(languages.getMessages("balanceNull"));
             } else{
-                System.out.printf(languages.getMessages("balanceNeg"),money);
+                System.out.printf(languages.getMessages("balanceNeg"),(money*(-1)));
                 System.out.println();
             }
         } else{

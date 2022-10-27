@@ -1,18 +1,27 @@
 import gui_fields.GUI_Field;
+import gui_fields.GUI_Player;
 import gui_fields.GUI_Street;
 import gui_main.GUI;
+
+import java.awt.*;
 
 public class UIController {
 
     GUI gui;
     Languages languages = new Languages();
+    GUI_Field[] fields = new GUI_Field[11];
 
-    public UIController(){
+    GUI_Player player1 = new GUI_Player("Player 1");
+    GUI_Player player2 = new GUI_Player("Player 1");
+    int last1 = 0;
+    int last2 = 0;
+
+    public UIController(Player[] players){
         gui = new GUI(CustomFields());
     }
 
     public GUI_Field[] CustomFields(){
-        GUI_Field[] fields = new GUI_Field[11];
+
 
         GUI_Street field0 = new GUI_Street();
         field0.setTitle(languages.getMessages("nameTower"));
@@ -72,5 +81,21 @@ public class UIController {
         return fields;
     }
 
+    public void sendMessage(String text){
+        gui.showMessage(text);
+    }
 
+    public void moveCar(int player, int field){
+
+        if(player == 0){
+            fields[last1].setCar(player1,false);
+            fields[field].setCar(player1,true);
+            last1 = field;
+        } else{
+            fields[last2].setCar(player2,false);
+            fields[field].setCar(player2,true);
+            last2 = field;
+        }
+
+    }
 }

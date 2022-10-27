@@ -3,6 +3,8 @@ import java.util.Arrays;
 public class GameController {
     //LanguageSelect languageSelect = new LanguageSelect();
     Languages languages = new Languages();
+    int playerwin = 0;
+    boolean extraTurn = false;
     public void game(){
         //languageSelect.selectLanguage(0);
         Player[] players = new Player[2];
@@ -10,7 +12,7 @@ public class GameController {
         players[0] = new Player();
         players[1] = new Player();
         //GUI gui = new GUI();
-        UIController uiController = new UIController();
+        UIController uiController = new UIController(players);
 
         temp(players);
 
@@ -22,8 +24,10 @@ public class GameController {
             boolean clickRoll = uiController.gui.getUserLeftButtonPressed(languages.getMessages("button") + (playerTurn+1), languages.getMessages("buttonAns"), languages.getMessages("buttonAns"));
 
             players[playerTurn].rollDice();
-
-            System.out.println(landOnField(players[playerTurn], players[playerTurn].sumOfDice()));
+            String temp = landOnField(players[playerTurn], players[playerTurn].sumOfDice());
+            System.out.println(temp);
+            uiController.sendMessage(temp);
+            uiController.moveCar(playerTurn,players[playerTurn].sumOfDice()-2);
 
             //System.out.println("Player " + playerTurn + " sum: " + players[playerTurn].konto.getAmountOfMoney());
             System.out.println("playerturn: " +(playerTurn+1));
@@ -32,8 +36,16 @@ public class GameController {
             System.out.println("Player 2 sum: " + players[1].konto.getAmountOfMoney());
 
 
-
-            playerTurn++;
+            if(extraTurn == false) {
+                playerTurn++;
+            } else{
+                extraTurn = false;
+            }
+        }
+        if(players[0].konto.getAmountOfMoney()>3000) {
+            uiController.sendMessage(languages.getMessages("player1"));
+        } else{
+            uiController.sendMessage(languages.getMessages("player2"));
         }
     }
 
@@ -46,9 +58,10 @@ public class GameController {
 //        Languages languages = new Languages();
         boolean win = false;
         for (int i = 0; i < players.length; i++) {
-            if(players[i].konto.getAmountOfMoney()>3000){
+            if(players[i].konto.getAmountOfMoney()>=3000){
                 win = true;
                 System.out.printf(languages.getMessages("playerWin"), i+1);
+
             }
         }
         return win;
@@ -82,6 +95,7 @@ public class GameController {
                 return languages.getMessages("fieldMountains");
             case 10:
                 player.konto.changeBalance(-80);
+                extraTurn = true;
                 return languages.getMessages("fieldWerewall");
             case 11:
                 player.konto.changeBalance(-50);
