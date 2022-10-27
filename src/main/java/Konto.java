@@ -1,6 +1,7 @@
 public class Konto {
 
-    LanguageSelect languageSelect = new LanguageSelect();
+    //LanguageSelect languageSelect = new LanguageSelect();
+    Languages languages = new Languages();
     public Konto(){
         amountOfMoney = 1000;
     }
@@ -15,18 +16,20 @@ public class Konto {
         this.amountOfMoney = amountOfMoney;
     }
 
-    public void insertMoney(int money){
-        amountOfMoney += money;
-        System.out.println(money + languageSelect.getTextAtIndex(12));
-    }
-
-    public void removeMoney(int money){
-        amountOfMoney -= money;
-        if(amountOfMoney <= 0){
-            amountOfMoney = 0;
-            System.out.println(languageSelect.getTextAtIndex(13));
+    public void changeBalance(int money){
+        if(money<0){
+            amountOfMoney -= money;
+            if(amountOfMoney <= 0){
+                amountOfMoney = 0;
+                System.out.println(languages.getMessages("balanceNull"));
+            } else{
+                System.out.printf(languages.getMessages("balanceNeg"),money);
+                System.out.println();
+            }
         } else{
-            System.out.println(money + languageSelect.getTextAtIndex(14));
+            amountOfMoney += money;
+            System.out.printf(languages.getMessages("balancePos"),money);
+            System.out.println();
         }
     }
 }

@@ -1,10 +1,10 @@
 import java.util.Arrays;
 //import gui_main.GUI;
 public class GameController {
-    LanguageSelect languageSelect= new LanguageSelect();
-
+    //LanguageSelect languageSelect = new LanguageSelect();
+    Languages languages = new Languages();
     public void game(){
-        languageSelect.selectLanguage(0);
+        //languageSelect.selectLanguage(0);
         Player[] players = new Player[2];
         //Arrays.fill(players, new Player());
         players[0] = new Player();
@@ -19,11 +19,11 @@ public class GameController {
             if(playerTurn >= players.length){
                 playerTurn = 0;
             }
-            boolean clickRoll = uiController.gui.getUserLeftButtonPressed("Click for roll player: " + (playerTurn+1),  "yes","Yes");
+            boolean clickRoll = uiController.gui.getUserLeftButtonPressed(languages.getMessages("button") + (playerTurn+1), languages.getMessages("buttonAns"), languages.getMessages("buttonAns"));
 
             players[playerTurn].rollDice();
 
-            landOnField(players[playerTurn], players[playerTurn].sumOfDice());
+            System.out.println(landOnField(players[playerTurn], players[playerTurn].sumOfDice()));
 
             //System.out.println("Player " + playerTurn + " sum: " + players[playerTurn].konto.getAmountOfMoney());
             System.out.println("playerturn: " +(playerTurn+1));
@@ -43,50 +43,52 @@ public class GameController {
     }
 
     public boolean winCondition(Player[] players){
+//        Languages languages = new Languages();
         boolean win = false;
         for (int i = 0; i < players.length; i++) {
             if(players[i].konto.getAmountOfMoney()>3000){
                 win = true;
-                System.out.printf(languageSelect.getTextAtIndex(11), i+1);
+                System.out.printf(languages.getMessages("playerWin"), i+1);
             }
         }
         return win;
     }
 
     public String landOnField(Player player, int field){
+//        Languages languages = new Languages();
         switch (field){
             case 2:
-                player.konto.insertMoney(250);
-                return languageSelect.getTextAtIndex(0);
+                player.konto.changeBalance(250);
+                return languages.getMessages("fieldTower");
             case 3:
-                player.konto.removeMoney(100);
-                return languageSelect.getTextAtIndex(1);
+                player.konto.changeBalance(-100);
+                return languages.getMessages("fieldCrater");
             case 4:
-                player.konto.insertMoney(100);
-                return languageSelect.getTextAtIndex(2);
+                player.konto.changeBalance(100);
+                return languages.getMessages("fieldPalace");
             case 5:
-                player.konto.removeMoney(20);
-                return languageSelect.getTextAtIndex(3);
+                player.konto.changeBalance(-20);
+                return languages.getMessages("fieldDesert");
             case 6:
-                player.konto.insertMoney(180);
-                return languageSelect.getTextAtIndex(4);
+                player.konto.changeBalance(180);
+                return languages.getMessages("fieldCity");
             case 7:
-                return languageSelect.getTextAtIndex(5);
+                return languages.getMessages("fieldMonastery");
             case 8:
-                player.konto.removeMoney(70);
-                return languageSelect.getTextAtIndex(6);
+                player.konto.changeBalance(-70);
+                return languages.getMessages("fieldCave");
             case 9:
-                player.konto.insertMoney(60);
-                return languageSelect.getTextAtIndex(7);
+                player.konto.changeBalance(60);
+                return languages.getMessages("fieldMountains");
             case 10:
-                player.konto.removeMoney(80);
-                return languageSelect.getTextAtIndex(8);
+                player.konto.changeBalance(-80);
+                return languages.getMessages("fieldWerewall");
             case 11:
-                player.konto.removeMoney(50);
-                return languageSelect.getTextAtIndex(9);
+                player.konto.changeBalance(-50);
+                return languages.getMessages("fieldPits");
             case 12:
-                player.konto.insertMoney(650);
-                return languageSelect.getTextAtIndex(10);
+                player.konto.changeBalance(650);
+                return languages.getMessages("fieldMine");
             default:
                 return "Out of bounds.";
         }
