@@ -8,8 +8,8 @@ class GameControllerTest {
     @Test
     @DisplayName("Language test English")
     void landOnFieldEnglishText() {
-        LanguageSelect languageSelect = new LanguageSelect();
-        languageSelect.selectLanguage(0);
+        Languages languages = new Languages();
+        languages.setLanguages("en","US");
         GameController game = new GameController();
         Player player = new Player();
 
@@ -25,6 +25,29 @@ class GameControllerTest {
                 ()->assertEquals(game.landOnField(player,10),"Werewolves are tough, you have to spend 80 gold on silver weapons. The adrenaline keeps you going."),
                 ()->assertEquals(game.landOnField(player,11),"You lost 50 gold gambling in the fighting pits."),
                 ()->assertEquals(game.landOnField(player,12),"While the dwarfs are in the mine, you steal their stash.")
+        );
+    }
+
+    @Test
+    @DisplayName("Language test Danish")
+    void landOnFieldDanishText() {
+        Languages languages = new Languages();
+        languages.setLanguages("da","DK");
+        GameController game = new GameController();
+        Player player = new Player();
+
+        assertAll(
+                ()->assertEquals(game.landOnField(player,2),"Du har plynret et tårn og stjålet 250 guld."),
+                ()->assertEquals(game.landOnField(player,3),"Du er faldet ned i et krater og tabt 100 guld."),
+                ()->assertEquals(game.landOnField(player,4),"Du er gået ind i paladsets porte og \"fundet\" dekorationer for 100 guld."),
+                ()->assertEquals(game.landOnField(player,5),"Ørkenen er kold om natten, så du lejer et værelse til 20 guld."),
+                ()->assertEquals(game.landOnField(player,6),"En by omgivet af mure får folk til at føle sig trygge og sænker deres vagt til lommetyveri. Du stjæler 180 guld."),
+                ()->assertEquals(game.landOnField(player,7),"Klostret er fattigt, men du er ikke typen, der donerer."),
+                ()->assertEquals(game.landOnField(player,8),"Du går ind i en mørk hule, kun for at blive berøvet 70 guld."),
+                ()->assertEquals(game.landOnField(player,9),"Hytterne i bjergene er isolerede, perfekte til at røve. Du stjæler 60 guld."),
+                ()->assertEquals(game.landOnField(player,10),"Varulve er hårde, du skal bruge 80 guld på sølvvåben. Adrenalinen holder dig i gang."),
+                ()->assertEquals(game.landOnField(player,11),"Du taber 50 guld ved satsning i kampgraven."),
+                ()->assertEquals(game.landOnField(player,12),"Mens dværgene er i minen, stjæler du deres skatte.")
         );
     }
 }

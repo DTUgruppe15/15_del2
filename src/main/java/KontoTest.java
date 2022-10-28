@@ -9,7 +9,7 @@ class KontoTest {
         Konto konto = new Konto();
 
         konto.setAmountOfMoney(1000);
-        konto.removeMoney(100);
+        konto.changeBalance(-100);
 
         assertEquals(konto.getAmountOfMoney(),900);
     }
@@ -18,7 +18,7 @@ class KontoTest {
         Konto konto = new Konto();
 
         konto.setAmountOfMoney(1000);
-        konto.removeMoney(1000);
+        konto.changeBalance(-1000);
 
         assertEquals(konto.getAmountOfMoney(),0);
     }
@@ -27,7 +27,7 @@ class KontoTest {
         Konto konto = new Konto();
 
         konto.setAmountOfMoney(1000);
-        konto.removeMoney(2000);
+        konto.changeBalance(-2000);
 
         assertEquals(konto.getAmountOfMoney(),0);
     }
@@ -36,7 +36,7 @@ class KontoTest {
         Konto konto = new Konto();
 
         konto.setAmountOfMoney(1000);
-        konto.insertMoney(1000);
+        konto.changeBalance(1000);
 
         assertEquals(konto.getAmountOfMoney(),2000);
     }
